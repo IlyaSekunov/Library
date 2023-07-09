@@ -20,16 +20,6 @@ public class Database {
         }
     }
 
-    public static ResultSet get(String query) {
-        try (Connection connection = DriverManager.getConnection(Configuration.CONNECTION_URL,
-                Configuration.USER_NAME, Configuration.PASSWORD);
-             Statement statement = connection.createStatement()) {
-            return statement.executeQuery(query);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static List<Author> getAllAuthors() {
         try (Connection connection = DriverManager.getConnection(Configuration.CONNECTION_URL,
                 Configuration.USER_NAME, Configuration.PASSWORD);
@@ -74,7 +64,7 @@ public class Database {
         }
     }
 
-    private static List<Book> getBookList(ResultSet resultSet) throws SQLException {
+    public static List<Book> getBookList(ResultSet resultSet) throws SQLException {
         List<Book> bookList = new ArrayList<>();
         while (resultSet.next()) {
             Book book = new Book();
@@ -88,10 +78,11 @@ public class Database {
             book.setContentUrl(resultSet.getString(8));
             bookList.add(book);
         }
+        resultSet.close();
         return bookList;
     }
 
-    private static List<Author> getAuthorList(ResultSet resultSet) throws SQLException {
+    public static List<Author> getAuthorList(ResultSet resultSet) throws SQLException {
         List<Author> authorList = new ArrayList<>();
         while (resultSet.next()) {
             Author author = new Author();
@@ -100,10 +91,11 @@ public class Database {
             author.setBirthday(resultSet.getDate(3));
             authorList.add(author);
         }
+        resultSet.close();
         return authorList;
     }
 
-    private static List<Genre> getGenreList(ResultSet resultSet) throws SQLException {
+    public static List<Genre> getGenreList(ResultSet resultSet) throws SQLException {
         List<Genre> genreList = new ArrayList<>();
         while (resultSet.next()) {
             Genre genre = new Genre();
@@ -111,6 +103,7 @@ public class Database {
             genre.setName(resultSet.getString(2));
             genreList.add(genre);
         }
+        resultSet.close();
         return genreList;
     }
 
@@ -123,7 +116,19 @@ public class Database {
             resultSet.next();
             author.setId(resultSet.getInt(1));
             author.setName(resultSet.getString(2));
+            resultSet.close();
             return author;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<Book> getBooks(String query) {
+        try (Connection connection = DriverManager.getConnection(Configuration.CONNECTION_URL,
+                Configuration.USER_NAME, Configuration.PASSWORD);
+        Statement statement = connection.createStatement()) {
+          ResultSet resultSet = statement.executeQuery(query);
+          return getBookList(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

@@ -1,0 +1,11 @@
+<%@ page import="com.example.library.LetterList" %>
+<%@ page pageEncoding="UTF-8" %>
+
+<div class="letters">
+    <%
+        char[] letters = LetterList.getRussianLetters();
+        for (char c : letters) {
+    %>
+    <a href="books?letter=<%=c%>"><%=c%></a>
+    <%}%>
+</div>

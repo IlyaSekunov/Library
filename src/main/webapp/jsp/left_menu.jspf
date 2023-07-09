@@ -7,7 +7,7 @@
     <ul class="nav">
         <% List<Genre> genreList = Database.getAllGenres();
             for (Genre genre : genreList) {%>
-        <li><a href="books?genre_id=<%=genre.getId()%>&name=<%=genre.getName()%>"><%=genre.getName()%></a></li>
+        <li><a style="margin-bottom: 10px;" href="books?genre_id=<%=genre.getId()%>&name=<%=genre.getName()%>"><%=genre.getName()%></a></li>
         <%}%>
     </ul>
 </div>

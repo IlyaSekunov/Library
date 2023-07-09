@@ -51,6 +51,7 @@ a:hover, a:active, a:focus {
 
 .header {
     background-color: #FFF;
+    margin-top: 20px;
 }
 
 .sidebar1 {
@@ -77,8 +78,14 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
 }
 
 .search_form {
-    padding: 20px;
+    background-color: #3d768a;
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-top: 20px;
+    width: 90%;
+    padding: 7px;
     text-align: left;
+    float: left;
 }
 
 .logo {
@@ -120,6 +127,26 @@ ul.nav a:hover, ul.nav a:active, ul.nav a:focus {
     color: #378de5;
     font-weight: bold;
     font-size: 15px;
+}
+
+.image_welcome img, .image_welcome h4, .image_welcome a{
+    float: left;
+}
+
+.welcome_message {
+    margin-left: 50px;
+    margin-top: 50px;
+    max-width: 250px;
+}
+
+.letters {
+    float: left;
+    margin: 10px 10px 40px 10px;
+}
+
+.letters a {
+    float: left;
+    margin: 5px;
 }
 
 

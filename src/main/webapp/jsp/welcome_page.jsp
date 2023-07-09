@@ -1,4 +1,17 @@
+<%@ page import="java.util.Enumeration" %>
+<%@ page import="com.example.library.Database" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
+<%! public void jspInit() {
+    Database.connect();
+}%>
+<%
+    Enumeration<String> attributes = session.getAttributeNames();
+    if (attributes != null) {
+        while (attributes.hasMoreElements()) {
+            session.removeAttribute(attributes.nextElement());
+        }
+    }
+%>
 <html>
 <head>
     <title>Онлайн библиотека::Вход</title>
@@ -16,7 +29,7 @@
     </div>
     <div class="login_div">
         <p class="title">Для входа введите свои данные:</p>
-        <form class="content" name="username" action="main" method="post">
+        <form class="content" name="username" action="books" method="post">
             Имя: <input type="text" name="username" value="" size="20" />
             <input type="submit" value="Войти" />
         </form>
