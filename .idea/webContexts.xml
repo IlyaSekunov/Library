@@ -4,6 +4,8 @@
     <option name="state">
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp_pages/welcome_page.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp_pages" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp_segments/header.jsp" value="file://$PROJECT_DIR$/src/main/webapp/jsp_segments" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/jsp_segments/header.jspf" value="file://$PROJECT_DIR$/src/main/webapp/jsp_segments" />
       </map>
     </option>
   </component>
