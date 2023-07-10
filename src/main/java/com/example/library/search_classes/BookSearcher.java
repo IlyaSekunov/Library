@@ -1,8 +1,7 @@
-package com.example.library;
+package com.example.library.search_classes;
+import com.example.library.database_classes.Book;
+import com.example.library.database_classes.Database;
 
-import javax.xml.crypto.Data;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.List;
 
 public class BookSearcher {

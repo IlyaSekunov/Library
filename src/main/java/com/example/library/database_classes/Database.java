@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.library.database_classes;
 
 import java.sql.*;
 import java.util.ArrayList;

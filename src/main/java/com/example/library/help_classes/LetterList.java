@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.library.help_classes;
 
 public class LetterList {
     private static final char[] RUSSIAN_LETTERS = {'А', 'Б', 'В', 'Г', 'Д', 'Е',

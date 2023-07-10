@@ -1,5 +1,5 @@
 <%@ page import="java.util.Enumeration" %>
-<%@ page import="com.example.library.Database" %>
+<%@ page import="com.example.library.database_classes.Database" %>
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%! public void jspInit() {
     Database.connect();
@@ -29,7 +29,7 @@
     </div>
     <div class="login_div">
         <p class="title">Для входа введите свои данные:</p>
-        <form class="content" name="username" action="books" method="post">
+        <form class="content" name="username" action="books?page=1" method="post">
             Имя: <input type="text" name="username" value="" size="20" />
             <input type="submit" value="Войти" />
         </form>

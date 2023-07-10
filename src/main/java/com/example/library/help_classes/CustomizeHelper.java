@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.library.help_classes;
 
 public class CustomizeHelper {
     public static String parseAuthorName(String name) {

@@ -1,4 +1,4 @@
-package com.example.library;
+package com.example.library.database_classes;
 
 public class Genre {
     public Genre() {}

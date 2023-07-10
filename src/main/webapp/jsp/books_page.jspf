@@ -1,0 +1,57 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ page import="com.example.library.database_classes.Book" %>
+<%@ page import="com.example.library.database_classes.Author" %>
+<%@ page import="com.example.library.database_classes.Database" %>
+<%@ page import="com.example.library.help_classes.CustomizeHelper" %>
+<%@ page import="java.util.Enumeration" %>
+<%
+    StringBuilder parameters = new StringBuilder();
+    Enumeration<String> parameterNames = request.getParameterNames();
+    while (parameterNames.hasMoreElements()) {
+        String parameter = parameterNames.nextElement();
+        if (parameter.equals("page")) continue;
+        String value = request.getParameter(parameter);
+        parameters.append("&" + parameter + "=" + value);
+    }
+    int currentPage;
+    if (request.getParameter("page") == null) {
+        currentPage = 1;
+    } else {
+        currentPage = Integer.parseInt(request.getParameter("page"));
+    }
+    int pagesCount = (int)Math.ceil(bookList.size() / 3.);
+    int startIndex = 3 * (currentPage - 1);
+    int endIndex = startIndex + 2 >= bookList.size() ? bookList.size() - 1 : startIndex + 2;
+    for (;startIndex <= endIndex; ++startIndex) {
+        Book book = bookList.get(startIndex);
+        Author author = Database.getAuthorById(book.getAuthorId());
+%>
+<div class="book_info">
+    <div class="book_title">
+        <p><%=book.getName()%></p>
+    </div>
+    <div class="book_image">
+        <img src="<%=book.getImageUrl()%>" height="250" width="190"/>
+    </div>
+    <div class="book_details">
+        <br><strong>Количество страниц:</strong> <%=book.getPageCount()%>
+        <br><strong>Год публикации:</strong> <%=book.getPublishYear()%>
+        <br><strong>Автор:</strong> <%=CustomizeHelper.parseAuthorName(author.getName())%>
+        <p style="margin: 10px;"> <a href="<%=book.getContentUrl()%>" onclick="window.open('<%=book.getContentUrl()%>',
+                'newwindow',
+                'width=3000,height=2100');
+                return false;">Читать</a></p>
+    </div>
+</div>
+<%}%>
+
+<div class="page_swapper">
+    <a style="margin-right: 10px" href="books?page=<%=currentPage > 1 ? currentPage - 1 : 1%><%=parameters.toString()%>">Назад</a>
+    <a href="books?page=<%=currentPage < pagesCount ? currentPage + 1 : pagesCount%><%=parameters.toString()%>">Далее</a>
+    <br>
+    <%
+        for (int i = 1; i <= pagesCount; ++i) {
+    %>
+    <a href="books?page=<%=i%><%=parameters.toString()%>"><%=i%></a>
+    <%}%>
+</div>
