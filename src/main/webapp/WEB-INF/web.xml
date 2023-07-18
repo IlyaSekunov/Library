@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
-        
+            
         <resource-ref>
             <description>Database connection</description>
             <res-ref-name>jdbc/Database</res-ref-name>
@@ -20,14 +20,6 @@
             <url-pattern>/welcome</url-pattern>
         </servlet-mapping>
         <servlet>
-            <servlet-name>MainPage</servlet-name>
-            <jsp-file>/jsp/main_page.jsp</jsp-file>
-        </servlet>
-        <servlet-mapping>
-            <servlet-name>MainPage</servlet-name>
-            <url-pattern>/main</url-pattern>
-        </servlet-mapping>
-        <servlet>
             <servlet-name>Books</servlet-name>
             <jsp-file>/jsp/books.jsp</jsp-file>
         </servlet>
@@ -35,4 +27,8 @@
             <servlet-name>Books</servlet-name>
             <url-pattern>/books</url-pattern>
         </servlet-mapping>
+        <welcome-file-list>
+            <welcome-file>welcome_page.jsp</welcome-file>
+        </welcome-file-list>
+    
 </web-app>

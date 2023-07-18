@@ -34,9 +34,6 @@
             <input type="submit" value="Войти" />
         </form>
     </div>
-    <div class="footer">
-        Разработчик: Секунов Илья, 2023г.
-    </div>
 </div>
 </body>
 </html>

@@ -56,8 +56,9 @@ public class Database {
     public static List<Book> getBooksByGenre(int genreId) {
         try (Connection connection = DriverManager.getConnection(Configuration.CONNECTION_URL,
                 Configuration.USER_NAME, Configuration.PASSWORD);
-             Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from book where book.genre_id = " + genreId);
+             PreparedStatement statement = connection.prepareStatement("select * from book where book.genre_id=?")) {
+            statement.setInt(1, genreId);
+            ResultSet resultSet = statement.executeQuery();
             return getBookList(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -110,8 +111,9 @@ public class Database {
     public static Author getAuthorById(int id) {
         try (Connection connection = DriverManager.getConnection(Configuration.CONNECTION_URL,
                 Configuration.USER_NAME, Configuration.PASSWORD);
-             Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery("select * from author where author.id = " + id);
+             PreparedStatement statement = connection.prepareStatement("select * from author where author.id = ?")) {
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
             Author author = new Author();
             resultSet.next();
             author.setId(resultSet.getInt(1));
